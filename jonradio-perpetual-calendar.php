@@ -3,7 +3,7 @@
 Plugin Name: jonradio Perpetual Calendar
 Plugin URI: http://jonradio.com/plugins/jonradio-perpetual-calendar/
 Description: Your choice of Shortcode or php function to return a message indicating the full name of the day of the week for any given date, the typical usage of a so-called Perpetual Calendar. 
-Version: 0.9
+Version: 1.0
 Author: jonradio
 Author URI: http://jonradio.com/plugins
 License: GPLv2
@@ -95,7 +95,8 @@ function jr_pc_pcal() {
 		$output .= '<hr />';
 	}
 	
-	$output .= '<form method=post> <button type="submit" name="jrsubmit" value="jrsubmit">Display Day of Week</button> <select name="jrmonth">';
+	$output .= '<form method=post> <button type="submit" name="jrsubmit" value="jrsubmit">Display Day of Week</button>';
+	$output .= ' <select name="jrmonth" style="width: 100px">';
 	for ( $i = 1; $i <= 12; $i++ ) {
 		if ( $i == $month ) {
 			$selected = 'selected="selected"';
@@ -104,7 +105,7 @@ function jr_pc_pcal() {
 		}
 		$output .= "<option $selected value=$i>" . date( 'F', mktime( 0, 0, 0, $i, 1, 2001 ) ) . '</option>';
 	}
-	$output .= '</select> <select name="jrday">';
+	$output .= '</select> <select name="jrday" style="width: 45px">';
 	for ( $i = 1; $i <= 31; $i++ ) {
 		if ( $i == $day ) {
 			$selected = 'selected="selected"';
@@ -120,7 +121,7 @@ function jr_pc_pcal() {
 		$sign = 1;
 	}	
 	
-	$output .= '</select>, <select name="jrcentury">';
+	$output .= '</select>, <select name="jrcentury" style="width: 75px">';
 	for ( $i = $min; $i <= $max; $i += 100 ) {
 		$century = floor( abs( $i ) / 100 );
 		if ( intval( $i / 100 ) == intval( $year / 100 ) ) {
@@ -130,7 +131,7 @@ function jr_pc_pcal() {
 		}
 		$output .= "<option $selected value=$i>" . jr_pc_century( $i ) . " $century</option>";
 	}
-	$output .= '</select> <select name="jrten">';
+	$output .= '</select> <select name="jrten" style="width: 37px">';
 	for ( $i = 0; $i <= 90; $i += 10 ) {
 		if ( $i / 10 == floor( abs( $year ) / 10 ) % 10 ) {
 			$selected = 'selected="selected"';
@@ -139,7 +140,7 @@ function jr_pc_pcal() {
 		}	
 		$output .= "<option $selected value=$i>" . $i / 10 . '</option>';
 	}
-	$output .= '</select> <select name="jryear">';
+	$output .= '</select> <select name="jryear" style="width: 37px">';
 	for ( $i = 0; $i <= 9; $i++ ) {
 		if ( $i == abs( $year ) % 10 ) {
 			$selected = 'selected="selected"';
@@ -148,7 +149,7 @@ function jr_pc_pcal() {
 		}
 		$output .= "<option $selected>$i</option>";
 	}
-	$output .= '</select> (year in three parts)';
+	$output .= '</select> (year in 3 parts)';
 	$output .= '</form>';
 	$output .= '<div style="text-align: right;"><a href="http://jonradio.com/plugins/jonradio-perpetual-calendar/help" target="_blank">Help and Info</a></div><hr />';
 	return $output;

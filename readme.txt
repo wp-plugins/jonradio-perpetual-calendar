@@ -4,7 +4,7 @@ Donate link: http://jonradio.com/plugins
 Tags: calendar, weekday
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 0.9
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,7 +26,9 @@ If Network is turned on in WordPress, Network Activation of the plugin allows bo
 
 Supported dates range from November 25, 4714 B.C. to December 31, 9999 A.D.; the jr_weekday function accepts years larger than 9999, but it has not been tested for accuracy past the year 9999.  Illegal dates, such as February 30 of any year, and the Year Zero (A.D. or B.C.), are detected and an error message is returned in place of the message indicating the weekday.
 
-Multiple uses of the [pcal] Shortcode on the same Page are not supported, and has not been tested.  Likewise, displaying multiple Posts, with [pcal] occuring more than once across all the displayed Posts, has not been tested.  Use at your own risk.
+Multiple uses of the [pcal] Shortcode on the same Page are allowed, and behave pretty much as you might expect.  Likewise, displaying multiple Posts, with [pcal] occuring more than once across all the displayed Posts.
+
+[pcal] shortcode has been tested with the following popular Themes:  Twenty Eleven, Twenty Ten, Delicate, PageLines, Responsive, Suffusion.
 
 == Installation ==
 
@@ -59,6 +61,9 @@ If there is enough interest, we will add that to a future version.  Please let u
 
 == Changelog ==
 
+= 1.0 =
+* style=width added to all SELECT HTML tags, to avoid huge wide date fields in some Themes
+
 = 0.9 =
 * Make private plugin conform to WordPress plugin repository standards.
 * Add link below ShortCode's form to explanation of the plugin.
@@ -66,4 +71,4 @@ If there is enough interest, we will add that to a future version.  Please let u
 == Upgrade Notice ==
 
 = 1.0 =
-Beta version 0.9 had not been tested for WordPress Plugin Repository installation
+Beta version 0.9 had not been tested with popular themes other than Twenty Eleven; width added to HTML SELECT tags
