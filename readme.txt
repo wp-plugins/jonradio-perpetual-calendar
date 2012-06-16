@@ -14,13 +14,13 @@ Provides both a Shortcode and a php Function that each return a message indicati
 
 Gives web site visitors a quick way to determine the Day of the Week for any date up to almost seven thousand years in the past or future.  The plugin provides both a [pcal] shortcode and jr_weekday function, providing a choice in how it is implemented.
 
-The term "Perpetual Calendar" normally refers to the display a calendar of any week or month across a broad range of years.  However, it is almost always used to determine the day of the week for a given date, which is what this plugin does.
+The term "Perpetual Calendar" normally refers to the display of a calendar of any week or month across a broad range of years.  However, it is almost always used to determine the day of the week for a given date, which is what this plugin does.
 
 Once the plugin is successfully installed and activated, adding the Shortcode [pcal] to any WordPress Post or Page will insert a Form that prompts the user to select a Month, Day, and Year from drop-down lists.  Hitting the Display Day of Week button will generate a message above the Form indicating the full name of the day of the week for the given date.  Or an error message for all invalid dates.  A link to additional help is also provided for the site visitor.
 
-To reduce the size of the drop-down lists, the Year is entered in three parts:  (1) A.D. or B.C. and first one or two digits ("century"); (2) second to last digit ("tens"); (3) last digit.
+To reduce the size of the drop-down lists, the Year is entered in three parts:  (1) A.D. or B.C. and first one or two digits ("century"); (2) second to last digit ("tens"); and (3) last digit.
 
-The jr_weekday function is also defined upon plugin activation, so that it can be called in any php code, including templates, within your WordPress environment.  It returns the same message as the [pcal] shortcode; it does NOT directly display through echo or other means.  And it does not display the user input <form>.
+The jr_weekday function is also defined upon plugin activation, so that it can be called in any php code, including templates, within your WordPress environment.  It returns the same message as the [pcal] shortcode; it does NOT directly display through echo or other means.  And it does not display the user input form.
 
 If Network is turned on in WordPress, Network Activation of the plugin allows both the plugin and shortcode to be called from all WordPress sites within the Network.  Alternatively, the plugin can also be activated for individual sites within the Network.
 
