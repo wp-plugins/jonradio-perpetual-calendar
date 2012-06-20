@@ -84,5 +84,8 @@ If there is enough interest, we will add that to a future version.  Please let u
 
 == Upgrade Notice ==
 
+= 2.0 =
+Version 1 forced use of A.D./B.C. display of dates, which Version 2 allows to be changed via a Setting.  Version 1 also linked to the plugin site for Help, while Version 2 provides in-line Help for site visitors using the Perpetual Calendar.
+
 = 1.0 =
 Beta version 0.9 had not been tested with popular themes other than Twenty Eleven; width added to HTML SELECT tags
