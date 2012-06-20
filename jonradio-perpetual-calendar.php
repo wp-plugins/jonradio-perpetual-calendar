@@ -3,7 +3,7 @@
 Plugin Name: jonradio Perpetual Calendar
 Plugin URI: http://jonradio.com/plugins/jonradio-perpetual-calendar/
 Description: Your choice of Shortcode or php function to return a message indicating the full name of the day of the week for any given date, the typical usage of a so-called Perpetual Calendar. 
-Version: 1.0
+Version: 2.0
 Author: jonradio
 Author URI: http://jonradio.com/plugins
 License: GPLv2
@@ -25,10 +25,78 @@ License: GPLv2
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+DEFINE( 'JR_PC_PLUGIN_NAME', 'jonradio Perpetual Calendar');
+global $jr_pc_dir;
+$jr_pc_dir = plugin_dir_path( __FILE__ );
+function jr_pc_dir() {
+	global $jr_pc_dir;
+	return $jr_pc_dir;
+}
+global $jr_pc_basename;
+$jr_pc_basename = plugin_basename( __FILE__ );
+global $jr_pc_dir_url;
+//	URL of this plugin's directory with trailing slash ("/")
+$jr_pc_dir_url = plugin_dir_url( __FILE__ );
+
+register_activation_hook( __FILE__, 'jr_pc_activate' );
+/**
+ * Activation Time Activities
+ * 
+ * Be sure required php Functions are available.
+ * Create Settings with default values, but only if they don't already exist.
+ *
+ */
+function jr_pc_activate() {
+	if ( function_exists('is_multisite') && is_multisite() && isset( $_GET['networkwide'] ) && ( $_GET['networkwide'] == 1 ) ) {
+		global $wpdb, $site_id;
+		$blogs = $wpdb->get_results( "SELECT blog_id FROM {$wpdb->blogs} WHERE site_id = $site_id" );
+		foreach ( $blogs as $blog_obj ) {
+			if ( switch_to_blog( $blog_obj->blog_id ) ) {
+				//	We know the Site actually exists
+				jr_pc_activate1();
+			}
+		}
+		restore_current_blog();
+	} else {
+		jr_pc_activate1();
+	}
+}
+function jr_pc_activate1() {
+	$settings = array(
+		'negative_year_handling'   => 'BC'
+		//	BC = B.C./A.D.
+		//	BCE = BCE/CE
+		//	NONE = negative years not allowed
+	);
+	//	Nothing happens if Settings already exist
+	add_option( 'jr_pc_settings', $settings );
+}
+
+add_action( 'wpmu_new_blog', 'jr_pc_new_site', 10, 6 );
+
+function jr_pc_new_site( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
+	global $jr_pc_basename;
+	if ( is_plugin_active_for_network( $jr_pc_basename ) ) {
+		switch_to_blog( $blog_id );
+		jr_pc_activate1();
+		restore_current_blog();
+	}
+}
+
+register_deactivation_hook( __FILE__, 'jr_pc_deactivate' );
+/**
+ * Deactivation Time Activities
+ * 
+ * Settings are removed at Uninstall because they need to survive a Deactivate/Activate.
+ *
+ */
+function jr_pc_deactivate() {
+}
 
 add_action( 'init', 'jr_pc_init' );
 
 function jr_pc_init() {
+	
 	if ( !function_exists( 'jr_weekday' ) ) {
 		/**
 		* Weekday message function
@@ -60,131 +128,48 @@ function jr_pc_init() {
 		}
 	}
 	
-	add_shortcode( 'pcal', 'jr_pc_pcal' );
+	if ( is_admin() ) {
+		//	Admin panel
+		require_once( jr_pc_dir() . 'includes/admin.php' );
+	} else {
+		//  Public Page
+		require_once( jr_pc_dir() . 'includes/public.php' );
+	}
 }
 
 /**
- * [pcal] Shortcode
+ * A.D./CE or B.C./BCE
  * 
- * Returns an HTML Form in which a user may enter a date.
- * If a Date was just entered, displays the Day of Week or an error message.
+ * Returns B.C. or BCE for negative years and A.D., CE or blank otherwise,
+ * depending on the negative_year_handling Setting.
  *
- * @return   string              HTML to display Date entry form and the Day of Week for a previous inquiry
+ * @param    int     $century    Year
+ * @return   string              A.D., CE, B.C., BCE or blank, 
  */
-function jr_pc_pcal() {
-	$min = -4714;
-	$max = 9999;
-	
-	//	Default Date:
-	$year = 1962;
-	$month = 2;
-	$day = 9;
-	
-	$output = '<hr />';
-	if ( isset( $_POST['jrsubmit'] ) ) {
-		$century = $_POST['jrcentury'];
-		if ( $century < 0 ) {
-			$sign = -1;
-		} else {
-			$sign = 1;
-		}
-		$year = $sign * ( ( floor( abs( $century ) / 100 ) * 100 ) + $_POST['jrten'] + $_POST['jryear'] );
-		$month = $_POST['jrmonth'];
-		$day = $_POST['jrday'];
-		$output .= '<p>' . jr_weekday( $year, $month, $day ) . '</p>';
-		$output .= '<hr />';
-	}
-	
-	$output .= '<form method=post> <button type="submit" name="jrsubmit" value="jrsubmit">Display Day of Week</button>';
-	$output .= ' <select name="jrmonth" style="width: 100px">';
-	for ( $i = 1; $i <= 12; $i++ ) {
-		if ( $i == $month ) {
-			$selected = 'selected="selected"';
-		} else {
-			$selected = '';
-		}
-		$output .= "<option $selected value=$i>" . date( 'F', mktime( 0, 0, 0, $i, 1, 2001 ) ) . '</option>';
-	}
-	$output .= '</select> <select name="jrday" style="width: 45px">';
-	for ( $i = 1; $i <= 31; $i++ ) {
-		if ( $i == $day ) {
-			$selected = 'selected="selected"';
-		} else {
-			$selected = '';
-		}		
-		$output .= "<option $selected>$i</option>";
-	}
-	
-	if ( $year < 0 ) {
-		$sign = -1;
+function jr_pc_century( $century ) {
+	$settings = get_option( 'jr_pc_settings' );
+	if ( $settings['negative_year_handling'] == 'NONE' ) {
+		$output = '';
 	} else {
-		$sign = 1;
-	}	
-	
-	$output .= '</select>, <select name="jrcentury" style="width: 75px">';
-	for ( $i = $min; $i <= $max; $i += 100 ) {
-		$century = floor( abs( $i ) / 100 );
-		if ( intval( $i / 100 ) == intval( $year / 100 ) ) {
-			$selected = 'selected="selected"';
+		if ( $settings['negative_year_handling'] == 'BCE' ) {
+			if ( $century < 0 ) {
+				$output = 'BCE ';
+			} else {
+				$output = 'CE ';
+			}
 		} else {
-			$selected = '';
+			if ( $century < 0 ) {
+				$output = 'B.C. ';
+			} else {
+				$output = 'A.D. ';
+			}
 		}
-		$output .= "<option $selected value=$i>" . jr_pc_century( $i ) . " $century</option>";
 	}
-	$output .= '</select> <select name="jrten" style="width: 37px">';
-	for ( $i = 0; $i <= 90; $i += 10 ) {
-		if ( $i / 10 == floor( abs( $year ) / 10 ) % 10 ) {
-			$selected = 'selected="selected"';
-		} else {
-			$selected = '';
-		}	
-		$output .= "<option $selected value=$i>" . $i / 10 . '</option>';
-	}
-	$output .= '</select> <select name="jryear" style="width: 37px">';
-	for ( $i = 0; $i <= 9; $i++ ) {
-		if ( $i == abs( $year ) % 10 ) {
-			$selected = 'selected="selected"';
-		} else {
-			$selected = '';
-		}
-		$output .= "<option $selected>$i</option>";
-	}
-	$output .= '</select> (year in 3 parts)';
-	$output .= '</form>';
-	$output .= '<div style="text-align: right;"><a href="http://jonradio.com/plugins/jonradio-perpetual-calendar/help" target="_blank">Help and Info</a></div><hr />';
 	return $output;
 }
 
-/**
- * A.D. or B.C.
- * 
- * Returns B.C. for negative years and A.D. otherwise
- *
- * @param    int     $century    Year
- * @return   string              A.D. or B.C.
- */
-function jr_pc_century( $century ) {
-	if ( $century < 0 ) {
-		return 'B.C.';
-	} else {
-		return 'A.D.';
-	}
-}
-
-/**
- * Check for signed integer
- * 
- * Determines if the parameter is a signed integer, including Strings and Floating Point ending .000
- *
- * @param    var     $val        Value to check
- * @return   bool                TRUE if signed integer; FALSE otherwise
- */
-function jr_pc_signed_integer( $val ) {
-	if ( is_numeric( $val ) && ( (int)$val == $val ) ) {
-		return TRUE;
-	} else {
-		return FALSE;
-	}
+function jr_pc_display_shortcode( $shortcode ) {
+	return str_replace( array( '[', ']' ), array( '&#091;', '&#093;' ), $shortcode );
 }
 
 ?>
