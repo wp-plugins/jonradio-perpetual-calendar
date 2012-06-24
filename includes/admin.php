@@ -35,7 +35,7 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 
 function jr_pc_network_admin_hook() {
 	//  Add Network Settings Page for this Plugin
-	add_network_options_page( JR_PC_PLUGIN_NAME, 'Perpetual Calendar plugin', 'manage_network_options', 'jr_pc_network_settings', 'jr_pc_network_settings_page' );
+	add_submenu_page( 'settings.php', JR_PC_PLUGIN_NAME, 'Perpetual Calendar plugin', 'manage_network_options', 'jr_pc_network_settings', 'jr_pc_network_settings_page' );
 }
 
 function jr_pc_network_settings_page() {
@@ -52,7 +52,7 @@ function jr_pc_network_settings_page() {
 	Unfortunately, when WordPress network activates a plugin,
 	you will not see an entry for that plugin on each individual Site's Plugins page.
 	Needless to say, this can be very confusing.
-	Therefore, we recommend that you Network Deactivate this plugin
+	If you wish to avoid this confusion, you can Network Deactivate this plugin
 	and Activate it individually on each Site where you wish to use it.
 	</p>
 	<p>

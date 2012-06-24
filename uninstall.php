@@ -9,8 +9,10 @@ if ( function_exists('is_multisite') && is_multisite() ) {
 	$blogs = $wpdb->get_results( "SELECT blog_id FROM {$wpdb->blogs} WHERE site_id = $site_id" );
 	foreach ($blogs as $blog_obj) {
 		delete_blog_option( $blog_obj->blog_id, 'jr_pc_settings' );
+		delete_blog_option( $blog_obj->blog_id, 'jr_pc_internal_settings' );
 	}
 } else {
 	delete_option( 'jr_pc_settings' );
+	delete_option( 'jr_pc_internal_settings' );
 }
 ?>

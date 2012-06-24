@@ -3,7 +3,7 @@
 Plugin Name: jonradio Perpetual Calendar
 Plugin URI: http://jonradio.com/plugins/jonradio-perpetual-calendar/
 Description: Your choice of Shortcode or php function to return a message indicating the full name of the day of the week for any given date, the typical usage of a so-called Perpetual Calendar. 
-Version: 2.0
+Version: 2.1
 Author: jonradio
 Author URI: http://jonradio.com/plugins
 License: GPLv2
@@ -47,6 +47,11 @@ register_activation_hook( __FILE__, 'jr_pc_activate' );
  *
  */
 function jr_pc_activate() {
+	global $jr_pc_activated;
+	//	Don't Activate twice, though it probably wouldn't hurt anything
+	if ( isset( $jr_pc_activated ) ) {
+		return;
+	}
 	if ( function_exists('is_multisite') && is_multisite() && isset( $_GET['networkwide'] ) && ( $_GET['networkwide'] == 1 ) ) {
 		global $wpdb, $site_id;
 		$blogs = $wpdb->get_results( "SELECT blog_id FROM {$wpdb->blogs} WHERE site_id = $site_id" );
@@ -60,7 +65,9 @@ function jr_pc_activate() {
 	} else {
 		jr_pc_activate1();
 	}
+	$jr_pc_activated = TRUE;
 }
+
 function jr_pc_activate1() {
 	$settings = array(
 		'negative_year_handling'   => 'BC'
@@ -70,6 +77,14 @@ function jr_pc_activate1() {
 	);
 	//	Nothing happens if Settings already exist
 	add_option( 'jr_pc_settings', $settings );
+	
+	$plugin_data = get_plugin_data(  __FILE__ );
+	$version = $plugin_data['Version'];
+	$internal_settings = array(
+		'version' => $version
+	);
+	//	Nothing happens if Settings already exist
+	add_option( 'jr_pc_internal_settings', $internal_settings );
 }
 
 add_action( 'wpmu_new_blog', 'jr_pc_new_site', 10, 6 );
@@ -91,12 +106,38 @@ register_deactivation_hook( __FILE__, 'jr_pc_deactivate' );
  *
  */
 function jr_pc_deactivate() {
+	global $jr_pc_activated;
+	//	Don't Deactivate if already Activated earlier in this Page view
+	if ( isset( $jr_pc_activated ) ) {
+		return;
+	}
+	
+	//	Nothing to do at Deactivation time
+	return;
 }
 
 add_action( 'init', 'jr_pc_init' );
 
 function jr_pc_init() {
+	//	Check for Plugin Version update (Deactivate and Activate Hooks not fired)
+	if ( !function_exists( 'get_plugin_data' ) ) {
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	}	
+	$internal_settings = get_option( 'jr_pc_internal_settings' );
+	if ( !$internal_settings ) {
+		jr_pc_deactivate();
+		jr_pc_activate();
+	} else {
+		$plugin_data = get_plugin_data(  __FILE__ );
+		if ( version_compare( $internal_settings['version'], $plugin_data['Version'], '<' ) ) {
+			jr_pc_deactivate();
+			jr_pc_activate();
+			$internal_settings['version'] = $plugin_data['Version'];
+			update_option( 'jr_pc_internal_settings', $internal_settings );
+		}
+	}
 	
+	//	Add plugin's "public" Function
 	if ( !function_exists( 'jr_weekday' ) ) {
 		/**
 		* Weekday message function

@@ -4,7 +4,7 @@ Donate link: http://jonradio.com/plugins
 Tags: calendar, weekday, date, history, shortcode, function, php, plugin
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ The jr_weekday function is also defined upon plugin activation, so that it can b
 
 If Network is turned on in WordPress, Network Activation of the plugin allows both the plugin and shortcode to be called from all WordPress sites within the Network.  Alternatively, the plugin can also be activated for individual sites within the Network.
 
-Supported dates range from November 25, 4714 B.C. (1 A.D. when Plugin Settings specify "Do not allow Dates more then 2000 Years in the Past") to December 31, 9999 A.D.; the jr_weekday function accepts years larger than 9999, but it has not been tested for accuracy past the year 9999.  Illegal dates, such as February 30 of any year, and the Year Zero (A.D. or B.C.), are detected and an error message is returned in place of the message indicating the weekday.
+Supported dates range from November 25, 4714 B.C. (1 A.D. when Plugin Settings specify "Do not allow Dates more then 2000 Years in the Past") to December 31, 9999 A.D.; the jr_weekday function accepts years larger than 9999, but it has not been tested for accuracy past the year 9999.  Illegal dates, such as February 31 of any year, and the Year Zero (A.D. or B.C.), are detected and an error message is returned in place of the message indicating the weekday.
 
 Multiple uses of the `[pcal]` Shortcode on the same Page are detected:  the first works normally, but all others are ignored.  Likewise, displaying multiple Posts, with `[pcal]` occuring more than once across all the displayed Posts.
 
@@ -67,8 +67,16 @@ If there is enough interest, we will add that to a future version.  Please let u
 2. WordPress Page with `[pcal]` Shortcode after a date has been entered and Display Day of Week button has been pushed
 3. WordPress Page with error message displayed because of invalid date ("February 31")
 4. Plugin site page displayed when Help and Info link clicked by site visitor
+5. Site Settings page for this Plugin
+6. Network Settings page for this Plugin
 
 == Changelog ==
+
+= 2.1 =
+* Change Recommendation on Network Settings page for Plugin
+* Setting was not automatically added and initialized to default on upgrade to Version 2
+* Update screenshots and fix those that did not display on some browsers
+* Replace add_network_options_page function call with add_submenu_page
 
 = 2.0 =
 * Add Admin Settings page to control how B.C./BCE dates are handled
@@ -83,6 +91,9 @@ If there is enough interest, we will add that to a future version.  Please let u
 * Add link below ShortCode's form to explanation of the plugin.
 
 == Upgrade Notice ==
+
+= 2.1 =
+Corrects errors with Network Activation and version upgrades not initializing Settings.
 
 = 2.0 =
 Version 1 forced use of A.D./B.C. display of dates, which Version 2 allows to be changed via a Setting.  Version 1 also linked to the plugin site for Help, while Version 2 provides in-line Help for site visitors using the Perpetual Calendar.
