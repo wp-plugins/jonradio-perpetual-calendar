@@ -3,7 +3,7 @@
 Plugin Name: jonradio Perpetual Calendar
 Plugin URI: http://jonradio.com/plugins/jonradio-perpetual-calendar/
 Description: Your choice of Shortcode or php function to return a message indicating the full name of the day of the week for any given date, the typical usage of a so-called Perpetual Calendar. 
-Version: 2.1
+Version: 2.2
 Author: jonradio
 Author URI: http://jonradio.com/plugins
 License: GPLv2
@@ -46,13 +46,13 @@ register_activation_hook( __FILE__, 'jr_pc_activate' );
  * Create Settings with default values, but only if they don't already exist.
  *
  */
-function jr_pc_activate() {
+function jr_pc_activate( $network_wide ) {
 	global $jr_pc_activated;
 	//	Don't Activate twice, though it probably wouldn't hurt anything
 	if ( isset( $jr_pc_activated ) ) {
 		return;
 	}
-	if ( function_exists('is_multisite') && is_multisite() && isset( $_GET['networkwide'] ) && ( $_GET['networkwide'] == 1 ) ) {
+	if ( $network_wide ) {
 		global $wpdb, $site_id;
 		$blogs = $wpdb->get_results( "SELECT blog_id FROM {$wpdb->blogs} WHERE site_id = $site_id" );
 		foreach ( $blogs as $blog_obj ) {
@@ -78,7 +78,7 @@ function jr_pc_activate1() {
 	//	Nothing happens if Settings already exist
 	add_option( 'jr_pc_settings', $settings );
 	
-	$plugin_data = get_plugin_data(  __FILE__ );
+	$plugin_data = get_plugin_data( __FILE__ );
 	$version = $plugin_data['Version'];
 	$internal_settings = array(
 		'version' => $version
@@ -126,12 +126,12 @@ function jr_pc_init() {
 	$internal_settings = get_option( 'jr_pc_internal_settings' );
 	if ( !$internal_settings ) {
 		jr_pc_deactivate();
-		jr_pc_activate();
+		jr_pc_activate( is_plugin_active_for_network( __FILE__ ) );
 	} else {
 		$plugin_data = get_plugin_data(  __FILE__ );
 		if ( version_compare( $internal_settings['version'], $plugin_data['Version'], '<' ) ) {
 			jr_pc_deactivate();
-			jr_pc_activate();
+			jr_pc_activate( is_plugin_active_for_network( __FILE__ ) );
 			$internal_settings['version'] = $plugin_data['Version'];
 			update_option( 'jr_pc_internal_settings', $internal_settings );
 		}

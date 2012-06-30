@@ -3,8 +3,8 @@ Contributors: jonradio
 Donate link: http://jonradio.com/plugins
 Tags: calendar, weekday, date, history, shortcode, function, php, plugin
 Requires at least: 3.0
-Tested up to: 3.4
-Stable tag: 2.1
+Tested up to: 3.4.1
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,9 @@ If there is enough interest, we will add that to a future version.  Please let u
 
 == Changelog ==
 
+= 2.2 =
+* Correct Network Activation to match change in WordPress notifying that a Network Activation has occurred
+
 = 2.1 =
 * Change Recommendation on Network Settings page for Plugin
 * Setting was not automatically added and initialized to default on upgrade to Version 2
@@ -91,6 +94,9 @@ If there is enough interest, we will add that to a future version.  Please let u
 * Add link below ShortCode's form to explanation of the plugin.
 
 == Upgrade Notice ==
+
+= 2.2 =
+Corrects missed activation steps for Network Activation
 
 = 2.1 =
 Corrects errors with Network Activation and version upgrades not initializing Settings.
