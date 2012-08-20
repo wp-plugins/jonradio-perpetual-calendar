@@ -79,8 +79,7 @@ function jr_pc_admin_hook() {
 /**
  * Settings page for plugin
  * 
- * Display and Process Settings page for this plugin,
- * and allow all captions to be updated with IPTC fields.
+ * Display and Process Settings page for this plugin.
  *
  */
 function jr_pc_settings_page() {
