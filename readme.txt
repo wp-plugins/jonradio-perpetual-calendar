@@ -14,6 +14,8 @@ Provides both a Shortcode and a php Function that each return a message indicati
 
 Gives web site visitors a quick way to determine the Day of the Week for any date up to almost seven thousand years in the past or future.  The plugin provides both a `[pcal]` shortcode and jr_weekday function, providing a choice in how it is implemented.
 
+Click here and scroll down for a Live Demo of the Plugin:  http://jonradio.com/plugins/jonradio-perpetual-calendar/
+
 The term "Perpetual Calendar" normally refers to the display of a calendar of any week or month across a broad range of years.  However, it is almost always used to determine the day of the week for a given date, which is what this plugin does.
 
 Once the plugin is successfully installed and activated, adding the Shortcode `[pcal]` to any WordPress Post or Page will insert an HTML `<form>` that prompts the user to select a Month, Day, and Year from drop-down lists.  Clicking the "Display Day of Week" button will generate a message above the `<form>` indicating the full name of the day of the week for the given date.  Or an error message for all invalid dates.  Clicking the "Help and Info" button will display, right below the Perpetual Calendar, instructions explaining what it is and how to use it.
@@ -30,6 +32,8 @@ Multiple uses of the `[pcal]` Shortcode on the same Page are detected:  the firs
 
 The `[pcal]` shortcode has been tested with the following popular Themes:  Twenty Eleven, Twenty Ten, Delicate, PageLines, Responsive, Suffusion.
 
+At present, this plugin is only available in English. **Anyone interested in providing translation files and localization information for this plugin into any language and culture is strongly encouraged to visit this page for more information**:  http://jonradio.com/plugins
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
@@ -40,6 +44,10 @@ This section describes how to install the plugin and get it working.
 1. Review the Plugin's Settings page in the WordPress Admin panels, which allows you to choose whether your site visitors will see current dates labelled as A.D., CE or not labelled at all.  And whether ancient dates will be labelled B.C., BCE or not allowed.
 
 == Frequently Asked Questions ==
+
+= Is the plugin available in my language and/or date format? =
+
+At present, this plugin is only available in English. Anyone interested in providing translation files and localization information for this plugin into any language and culture is strongly encouraged to visit this page for more information:  http://jonradio.com/plugins
 
 = Can I eliminate the reference to years as A.D., as my site visitors find it confusing? =
 
