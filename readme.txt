@@ -3,7 +3,7 @@ Contributors: jonradio
 Donate link: http://jonradio.com/plugins
 Tags: calendar, weekday, date, history, shortcode, function, php, plugin
 Requires at least: 3.0
-Tested up to: 3.6
+Tested up to: 3.7
 Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -36,12 +36,12 @@ At present, this plugin is only available in English. **Anyone interested in pro
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+This section describes how to install the *jonradio Perpetual Calendar* plugin and get it working.
 
-1. Use "Add Plugin" within the WordPress Admin panel to download and install this plugin from the WordPress.org plugin repository (preferred method).  Or download and unzip this plugin, then upload the `/jonradio-perpetual-calendar/` directory to your WordPress web site's `/wp-content/plugins/` directory.
-1. Activate the plugin through the 'Plugins' menu in WordPress.  If you have a WordPress Network ("Multisite"), you can either Network Activate this plugin, or Activate it individually on the sites where you wish to use it.  Activating on individual sites within a Network avoids some of the confusion created by WordPress' hiding of Network Activated plugins on the Plugin menu of individual sites.
-1. Insert the `[pcal]` shortcode in a WordPress Page or Post; or call the jr_weekday function from any php code, passing the function integer values for Year, Month and Day of Month, and displaying the message returned by the function.
-1. Review the Plugin's Settings page in the WordPress Admin panels, which allows you to choose whether your site visitors will see current dates labelled as A.D., CE or not labelled at all.  And whether ancient dates will be labelled B.C., BCE or not allowed.
+1. Use **Add Plugin** within the WordPress Admin panel to download and install this *jonradio Perpetual Calendar* plugin from the WordPress.org plugin repository (preferred method).  Or download and unzip this plugin, then upload the `/jonradio-perpetual-calendar/` directory to your WordPress web site's `/wp-content/plugins/` directory.
+1. Activate the *jonradio Perpetual Calendar* plugin through the **Installed Plugins** Admin panel in WordPress.  If you have a WordPress Network ("Multisite"), you can either **Network Activate** this plugin, or Activate it individually on the sites where you wish to use it.  Activating on individual sites within a Network avoids some of the confusion created by WordPress' hiding of Network Activated plugins on the Plugin menu of individual sites.    Alternatively, to avoid this confusion, you can install the *jonradio Reveal Network Activated Plugins* plugin.
+1. Insert the `[pcal]` shortcode in a WordPress Page or Post; or call the `jr_weekday()` function from any php code, passing the function integer values for Year, Month and Day of Month, and displaying the message returned by the function.
+1. Review the *jonradio Perpetual Calendar* plugin's Settings page in the WordPress Admin panels, where you can choose whether your site visitors will see current dates labelled as A.D., CE or not labelled at all.  And whether ancient dates will be labelled B.C., BCE or not allowed.
 
 == Frequently Asked Questions ==
 
