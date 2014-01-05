@@ -7,6 +7,7 @@ Version: 3.0
 Author: jonradio
 Author URI: http://jonradio.com/plugins
 Text Domain: jonradio-perpetual-calendar
+Domain Path: /languages
 License: GPLv2
 */
 
@@ -98,7 +99,6 @@ if ( ( FALSE === ( $internal_settings = get_option( 'jr_pc_internal_settings' ) 
 			- first time ever installed, or
 			- installed previously and properly uninstalled (data deleted)
 	*/
-
 	$old_version = '0.1';
 } else {
 	$old_version = $internal_settings['version'];
@@ -108,9 +108,12 @@ $settings = get_option( 'jr_pc_settings' );
 if ( empty( $settings ) ) {
 	$settings = array(
 		'negative_year_handling'   => 'BC'
-		//	BC = B.C./A.D.
-		//	BCE = BCE/CE
-		//	NONE = negative years not allowed
+		/*	BC = B.C./A.D.
+			BCE = BCE/CE
+			NONE = negative years not allowed
+			
+			'fields' are added later, at plugins_loaded
+		*/
 	);
 	/*	Add if Settings don't exist, re-initialize if they were empty.
 	*/
@@ -124,6 +127,7 @@ if ( version_compare( $old_version, $jr_pc_plugin_data['Version'], '!=' ) ) {
 	/*	Create, if internal settings do not exist; update if they do exist
 	*/
 	$internal_settings['version'] = $jr_pc_plugin_data['Version'];
+	$internal_settings['shortcode_dup'] = FALSE;
 	update_option( 'jr_pc_internal_settings', $internal_settings );
 
 	/*	Handle all Settings changes made in old plugin versions
@@ -137,6 +141,88 @@ add_action( 'plugins_loaded', 'jr_pc_textdomain' );
 function jr_pc_textdomain() {
 	global $jr_pc_plugin_data;
 	load_plugin_textdomain( $jr_pc_plugin_data['TextDomain'], FALSE, dirname( jr_pc_plugin_basename() ) . '/languages' );
+	
+	global $jr_pc_date_parts, $jr_pc_form_prefix, $jr_pc_part_fields;
+	/*	Prefix all fields in Forms to make them unique.
+	*/
+	$jr_pc_form_prefix = 'jrpc';
+	
+	$settings = get_option( 'jr_pc_settings' );
+	if ( empty( $settings['shortcode'] ) ) {
+		$settings['shortcode'] = _x( 'pcal', 'Shortcode Name', $jr_pc_plugin_data['TextDomain'] );
+		update_option( 'jr_pc_settings', $settings );
+	}
+	
+	/*	Key value and Description of each Date field
+	*/
+	$jr_pc_date_parts = array(
+		'month'      => __( 'Month Name', $jr_pc_plugin_data['TextDomain'] ),
+		'day'        => __( 'Day of Month', $jr_pc_plugin_data['TextDomain'] ),
+		/*	translators: Century Digits of Year refers to the year divided by 100, and would be "20" for the year 2014. */
+		'century'    => __( 'Century Digits of Year', $jr_pc_plugin_data['TextDomain'] ),
+		/*	translators: Ten Digits of the Year would be "1" for 2014. */
+		'tens'       => __( 'Tens Digit of Year', $jr_pc_plugin_data['TextDomain'] ),
+		'year'       => __( 'Last Digit of Year', $jr_pc_plugin_data['TextDomain'] ),
+		/*	translators: Current or Ancient Date refers to AD and BC, also known as CE and BCE; for example, 2200 years ago would be the year 200 BC. */
+		'era'        => __( 'Current or Ancient Date', $jr_pc_plugin_data['TextDomain'] ),
+		'buttonday'  => __( 'Display Day of Week button', $jr_pc_plugin_data['TextDomain'] ),
+		'buttonhelp' => __( 'Help and Info button', $jr_pc_plugin_data['TextDomain'] )
+		);
+	/*	Format of Date Fields information in jr_pc_settings:
+		['fields'][0] =>
+			['part']   => key from $jr_pc_date_parts, e.g. - 'day', of first field to display
+			['break']  => line break before field (true or false),
+			['before'] => text to display before field,
+			['width']  => width, in characters, of Form Field,
+			['after']  => text to display after field
+		['fields'][1] =>
+			['part']   => key from $jr_pc_date_parts, e.g. - 'day', of second field to display
+				...
+	*/
+	$jr_pc_part_fields = array(
+		'part'   => __( 'Date Part', $jr_pc_plugin_data['TextDomain'] ), 
+		'break'  => __( 'New Line Before?', $jr_pc_plugin_data['TextDomain'] ), 
+		'height' => __( 'Height of New Line (in Pixels)', $jr_pc_plugin_data['TextDomain'] ),
+		'before' => __( 'Text Before', $jr_pc_plugin_data['TextDomain'] ),
+		'width'  => __( 'Field Width (in Pixels)', $jr_pc_plugin_data['TextDomain'] ), 
+		'after'  => __( 'Text After', $jr_pc_plugin_data['TextDomain'] ) 
+		);
+	
+	/*	Set Default values for Form Fields
+	*/
+	$default_width = array(
+		'month'      => 100,
+		'day'        => 45,
+		'century'    => 45,
+		'tens'       => 37,
+		'year'       => 37,
+		'era'        => 50,
+		'buttonday'  => 1,
+		'buttonhelp' => 1
+		);
+	$default_after = array(
+		'month'      => '',
+		'day'        => ', ',
+		'century'    => '',
+		'tens'       => '',
+		'year'       => '',
+		'era'        => '',
+		'buttonday'  => ' ',
+		'buttonhelp' => ''
+		);
+	if ( empty( $settings['fields'] ) ) {
+		$index = 0;
+		foreach ( $jr_pc_date_parts as $part => $desc ) {
+			$fields[$index]['part'] = $part;
+			$fields[$index]['break'] = FALSE;
+			$fields[$index]['height'] = 0;
+			$fields[$index]['before'] = '';
+			$fields[$index]['width'] = $default_width[$part];
+			$fields[$index++]['after'] = $default_after[$part];
+		}
+		$settings['fields'] = $fields;
+		update_option( 'jr_pc_settings', $settings );
+	}
 }
 
 function jr_pc_display_shortcode( $shortcode ) {
