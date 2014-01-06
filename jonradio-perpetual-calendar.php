@@ -149,7 +149,8 @@ function jr_pc_textdomain() {
 	
 	$settings = get_option( 'jr_pc_settings' );
 	if ( empty( $settings['shortcode'] ) ) {
-		$settings['shortcode'] = _x( 'pcal', 'Shortcode Name', $jr_pc_plugin_data['TextDomain'] );
+		/*	translators: [pcal] is default Shortcode Name in English.  Feel free to change. */
+		$settings['shortcode'] = __( 'pcal', $jr_pc_plugin_data['TextDomain'] );
 		update_option( 'jr_pc_settings', $settings );
 	}
 	

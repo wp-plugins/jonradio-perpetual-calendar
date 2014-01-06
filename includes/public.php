@@ -17,6 +17,8 @@ function jr_pc_add_shortcode() {
 	$internal_settings = get_option( 'jr_pc_internal_settings' );
 	$settings = get_option( 'jr_pc_settings' );
 	if ( shortcode_exists( $settings['shortcode'] ) ) {
+		/*	A WordPress global that provides the Function Name associated with each Shortcode Name.
+		*/
 		global $shortcode_tags;
 		$internal_settings['shortcode_dup'] = $shortcode_tags[ $settings['shortcode'] ];
 		update_option( 'jr_pc_internal_settings', $internal_settings );
@@ -29,6 +31,7 @@ function jr_pc_add_shortcode() {
 			update_option( 'jr_pc_internal_settings', $internal_settings );
 		}
 	}
+
 }
 
 //	Add plugin's "public" Function

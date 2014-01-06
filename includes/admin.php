@@ -100,10 +100,12 @@ function jr_pc_settings_page() {
 	echo '<div class="wrap">';
 	echo '<h2>' . $jr_pc_plugin_data['Name'] . '</h2><p>';
 	$settings = get_option( 'jr_pc_settings' );
+	/*	translators: %1$s is the current name of the Shortcode, by default [pcal], but can be changed in the Settings.
+	*/
 	printf(
-		__( 'This plugin provides a Perpetual Calendar for your site visitors via the <code>%1$s</code> Shortcode, and for your own use within php code via the <code>jr_pc_weekday( $year, $month, $day )</code> function. The name of the Shortcode can be changed in the Settings below, but the name of the function cannot be changed.'
+		__( 'This plugin provides a Perpetual Calendar for your site visitors via the %1$s Shortcode, and for your own use within php code via the <code>jr_pc_weekday( $year, $month, $day )</code> function. The name of the Shortcode can be changed in the Settings below, but the name of the function cannot be changed.'
 			, $jr_pc_plugin_data['TextDomain'] ),
-		jr_pc_display_shortcode( '[' . $settings['shortcode'] . ']' )
+		'<code>' . jr_pc_display_shortcode( '[' . $settings['shortcode'] . ']' ) . '</code>'
 	);
 	echo '</p><p>';
 	_e( 'A Perpetual Calendar provides the day of the week for virtually any date in the past, present or future.'
@@ -193,6 +195,8 @@ function jr_pc_admin_init() {
 		} else {
 			$function_name = 'jr_pc_field_expl';
 		}
+		/*	translators: %1$s is an integer from 1 to 8
+		*/
 		add_settings_section( 
 			'jr_pc_field'. ( $index + 1 ) . '_section',
 			sprintf(
@@ -233,13 +237,18 @@ function jr_pc_shortcode_name_expl() {
 	$settings = get_option( 'jr_pc_settings' );
 	if ( FALSE !== $internal_settings['shortcode_dup'] ) {
 		echo '<p>';
+		/*	translators: %1$s is the (already in use) Shortcode Name that the user has just entered on the Settings page,
+			%2$s is the name of the php function that the previously defined (by something else) Shortcode Name points to,
+			and %3$s is the Site URL delivered by get_site_url().
+		*/
 		printf(
 			__( 
-				'The Shortcode Name specified below, <code>%1$s</code>, appears to be already in use by another plugin or WordPress itself. It initiates function <code>%2$s</code>. Please choose another Shortcode Name.', 
+				'The Shortcode Name specified below, %1$s, appears to be already in use by another plugin or WordPress itself. It initiates function %2$s. Please choose another Shortcode Name. When you have resolved this issue, please click on your site home page %3$s to clear the error before returning to this Settings page.', 
 				$jr_pc_plugin_data['TextDomain'] 
 				),
-			jr_pc_display_shortcode( '[' . $settings['shortcode'] . ']' ),
-			$internal_settings['shortcode_dup']
+			'<code>' . jr_pc_display_shortcode( '[' . $settings['shortcode'] . ']' ) . '</code>',
+			'<code>' . jr_pc_shortcode_function( $internal_settings['shortcode_dup'] ) . '</code>',
+			'<code>' . get_site_url() . '</code>'
 		);
 		echo '</p>';
 	}
@@ -251,7 +260,7 @@ function jr_pc_echo_shortcode_name() {
 	echo '<input type="text" id="shortcode" name="jr_pc_settings[shortcode]" size="16" maxlength="16" value="'
 		. $settings['shortcode']
 		. '" /> <small>';
-	_e( 'To maintain compatibility with future versions of WordPress, please use only lower-case letters, with no blanks, hyphens or underscores, and maximum length of 16.', 
+	_e( 'To maintain compatibility with future versions of WordPress, please use only lower-case letters, with no blanks, hyphens or underscores, and a maximum length of 16.', 
 		$jr_pc_plugin_data['TextDomain'] );
 	echo '</small>';
 }		
@@ -321,10 +330,10 @@ function jr_pc_layout_expl() {
 	_e( 'Visitors enter a date using an Input Form of drop-down values for day of month, name of month, and year. The format of that Form is defined below.  You can choose the order in which day of month, name of month, and year appear, as well as the width of each field within the Form. And the text, if any, separating each field, including line breaks.', 
 		$jr_pc_plugin_data['TextDomain'] );
 	echo '</p><p>';
-	_e( 'This also determines the format of the date in the response to the Display Date of Week button.', 
+	_e( 'This also determines the format of the date in the response to the Display Day of Week button.', 
 		$jr_pc_plugin_data['TextDomain'] );
 	echo '</p>';
-	_e( "You can also position the two buttons used in the Form, and specify text and line breaks as separators. But you cannot specify the width of the buttons, as that is determined automatically by the visitor's browser based on the button's text and the Theme's font and size that applies to the button's text."
+	_e( "You can also position the two buttons used in the Form, and specify text and line breaks as separators. But you cannot specify the width of the buttons, as that is determined automatically by the visitor's browser based on the button's text and the Theme's styling of the button and its text."
 		, $jr_pc_plugin_data['TextDomain'] );
 	/*	text-align and margin do the same thing, but each only works on some browsers, so do both.
 	*/
@@ -350,7 +359,7 @@ function jr_pc_field_expl() {
 function jr_pc_era_expl() {
 	global $jr_pc_plugin_data;
 	echo '<p>';
-	_e( 'This Date Field will be ignored, and will not shown in either the public Form where the site visitor enters the Date or in the response displayed after clicking the "Display Day of Week" button. This Date Field will be ignored as long as "Ancient Date Handling" continues to be set to "Do not allow Dates more then 2000 Years in the Past".', 
+	_e( 'This Date Field will be ignored, and will not shown in either the public Form where the site visitor enters the Date, or in the response displayed after clicking the "Display Day of Week" button. This Date Field will be ignored as long as "Ancient Date Handling" continues to be set to "Do not allow Dates more then 2000 Years in the Past".', 
 		$jr_pc_plugin_data['TextDomain'] );
 	echo '</p>';	
 }
@@ -437,13 +446,16 @@ function jr_pc_validate_settings( $input ) {
 			it is safe to check for duplicate definitions of Shortcodes.
 		*/
 		if ( shortcode_exists( $shortcode_name ) ) {
+			global $shortcode_tags;
 			add_settings_error(
 				'jr_pc_settings',
 				'jr_mt_dupshortcodeerror',
 				sprintf(
-					__( 'Shortcode Name "%1$s" is already in use by another plugin or WordPress itself; please choose another name',
+					__( 'Shortcode Name "%1$s" is already in use by another plugin or WordPress itself; it initiates function "%2$s"; please choose another name',
 						$jr_pc_plugin_data['TextDomain'] ),
-					$shortcode_name ),
+					$shortcode_name,
+					jr_pc_shortcode_function( $shortcode_tags[$shortcode_name] )
+					),
 				'error'
 			);
 			$valid['shortcode'] = $settings['shortcode'];
@@ -574,6 +586,37 @@ function jr_pc_validate_settings( $input ) {
 		);	
 	}
 	return $valid;
+}
+
+/**
+ * Get the Name of the Function that a Shortcode initiates
+ * 
+ * Figure it out from the structure used in global $shortcode_tags
+ * Adapted from Code at:  http://wordpress.stackexchange.com/questions/127758/shortcode-display-list-of-created-shortcode-in-popup
+ *
+ * $entry	string/array			Entry for single Shortcode from $shortcode_tags
+ * @return	string					Name of Function or Object::Function
+ */
+function jr_pc_shortcode_function( $entry ) {
+	if ( is_string( $entry ) ) {
+		$function = $entry;
+	} else {
+		if ( is_array( $entry ) ) {
+			if ( is_string( $entry[0] ) ) {
+				$function = $entry[0] . '::';
+			} else {
+				if ( is_object( $entry[0] ) ) {
+					$function = get_class( $entry[0] ) . '::';
+				} else {
+					$function = '';
+				}
+			}
+			$function .= $entry[1];
+		} else {
+			$function = '';
+		}
+	}				
+	return $function;			
 }
 
 ?>
