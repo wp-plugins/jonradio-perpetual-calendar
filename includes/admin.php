@@ -422,6 +422,8 @@ function jr_pc_validate_settings( $input ) {
 	*/
 	$shortcode_name = trim( $input['shortcode'] );
 	if ( function_exists( 'ctype_lower' ) && !ctype_lower( $shortcode_name ) ) {
+		/*	translators: %1$s is the invalid Shortcode Name entered by the Administrator on the plugin's Settings page
+		*/
 		add_settings_error(
 			'jr_pc_settings',
 			'jr_mt_lcshortcodeerror',
@@ -447,6 +449,10 @@ function jr_pc_validate_settings( $input ) {
 		*/
 		if ( shortcode_exists( $shortcode_name ) ) {
 			global $shortcode_tags;
+			/*	translators: %1$s is the duplicated Shortcode Name entered by the Administrator on the plugin's Settings page.
+				%2$s is the Function Name that the previously defined Shortcode Name initiates,
+				which may be displayed as just the Function's Name, Object::Function, or perhaps even a blank name if not known.
+			*/
 			add_settings_error(
 				'jr_pc_settings',
 				'jr_mt_dupshortcodeerror',
@@ -499,6 +505,8 @@ function jr_pc_validate_settings( $input ) {
 						}
 					}
 					if ( !$valid_height ) {
+						/*	translators: %1$s is an integer from 1 to 8
+						*/
 						add_settings_error(
 							'jr_pc_settings',
 							'jr_mt_heighterror',
@@ -517,6 +525,8 @@ function jr_pc_validate_settings( $input ) {
 					*/
 					if ( in_array( $input["$jr_pc_form_prefix$field$index"], $remember_part, TRUE ) ) {
 						$dup_parts = TRUE;
+						/*	translators: %1$s is an integer from 1 to 8
+						*/
 						add_settings_error(
 							'jr_pc_settings',
 							'jr_mt_parterror',
@@ -553,6 +563,8 @@ function jr_pc_validate_settings( $input ) {
 							}
 						}
 						if ( !$valid_width ) {
+							/*	translators: %1$s is an integer from 1 to 8
+							*/
 							add_settings_error(
 								'jr_pc_settings',
 								'jr_mt_widtherror',

@@ -8,6 +8,10 @@ function jr_pc_help() {
 	if ( $settings['negative_year_handling'] === 'NONE' ) {
 		$era_text = '';
 	} else {
+		/*	translators: This is the text referred to later as "Era Text".
+			%1$s is A.D. or CE (depending on Setting and how you have translated them) for current years,
+			and %2$s is B.C. or BCE for years more than 2000 years old.
+		*/
 		$era_text = sprintf( 
 			__( '<li>The era, %1$s for current years and %2$s for ancient years</li>', $jr_pc_plugin_data['TextDomain'] ),
 			jr_pc_century( 1 ),
@@ -22,15 +26,20 @@ function jr_pc_help() {
 			$jr_pc_plugin_data['TextDomain'] )
 		. '</p><h1>'
 		. __( 'How to Display the Day of the Week for a Date?', $jr_pc_plugin_data['TextDomain'] )
-		. '</h1><p>'
-		. sprintf( 
+		. '</h1><p>';
+	/*	translators: %1$s is a small graphic of a down arrow.
+	*/
+	$output .= sprintf( 
 			__( 
 				'To the right of the <strong>Display Day of Week</strong> button, click on the %1$s down arrow in each of the six boxes and select from the lists displayed by clicking on:',
 				$jr_pc_plugin_data['TextDomain'] ),
 			'<img src="' . $jr_pc_dir_url . 'images/dropdown9x5.jpg" alt="" width="9" height="5" />'
 			)
-		. '<ol>'
-		. sprintf( 
+		. '<ol>';
+	/*	translators: %1$s is the current year as a four digit number.
+		%2$s is the "Era Text" referred to in a previous translators comment.
+	*/
+	$output .= sprintf( 
 			__( 
 				'<li>The Month</li><li>The Day of the Month</li><li>The first one or two digits of the year, for example, 20 for this year, %1$s</li><li>The next digit of the year, frequently called <em>tens</em></li><li>The last digit of the year</li>%2$s',
 				$jr_pc_plugin_data['TextDomain'] ),
@@ -41,8 +50,10 @@ function jr_pc_help() {
 		. __( 'Then click on the <strong>Display Day of Week</strong> button.', $jr_pc_plugin_data['TextDomain'] )
 		. '</p><p>'
 		. __( 'You should now see a message above the Perpetual Calendar similar to the following:', $jr_pc_plugin_data['TextDomain'] )
-		. '<ul><li>'
-		. sprintf( 
+		. '<ul><li>';
+	/*	translators: %1$s is A.D. or CE or blank depending on Settings, and refers to how dates are specified to differential from Ancient Dates more than 2000 years ago.
+	*/
+	$output .= sprintf(
 			__( 
 				'February 9, 1962 %1$s is a Friday', 
 				$jr_pc_plugin_data['TextDomain'] ),
@@ -59,8 +70,11 @@ function jr_pc_help() {
 				jr_pc_century( 1 ),
 				jr_pc_century( -1 )
 				)
-			. '</h1><p>'
-			. sprintf( 
+			. '</h1><p>';
+			/*	translators: %1$s, %2$s and %4$s are the current four digit year.
+				%3$s is A.D. or CE, depending on the Settings.
+			*/
+			$output .= sprintf( 
 				__( 'The current year, %1$s, is more correctly known as &quot;%2$s %3$s&quot; to differentiate it from the year more than 4000 years ago with the same number, %4$s',
 					$jr_pc_plugin_data['TextDomain'] ),
 				$year,

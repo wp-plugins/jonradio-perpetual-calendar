@@ -47,20 +47,31 @@ function jr_pc_add_shortcode() {
 * @return   string              Message listing date and weekday, or error message.
 */
 function jr_weekday( $year, $month, $day ) {
+	function jr_weekday_spacing( $after_previous, $before ) {
+		if ( FALSE === $after_previous ) {
+			return $before;
+		} else {
+			if ( ( '' === $before ) && ( '' === $after_previous ) ) {
+				return ' ';
+			} else {
+				return $after_previous . $before;
+			}
+		}
+	}
 	global $jr_pc_plugin_data;
 	/*	All error messages returned by this function will be prefixed by this string.
 		Though not used that way in this plugin, programmers have the ability to
 		use it to determine if this function failed.
 	*/
-	$error_message_prefix = __( 'Error:  ', $jr_pc_plugin_data['TextDomain'] );
+	$error_message_prefix = __( 'Error jr_weekday function:  ', $jr_pc_plugin_data['TextDomain'] );
 	if ( !isset( $year ) || !isset( $month ) || !isset( $day ) ) {
 		return $error_message_prefix
-			. __( 'one or more of the three jr_weekday parameters (year, month, day) were either not specified or the variable specified is unassigned.', 
+			. __( 'one or more of the three function parameters (year, month, day) were either not specified or the variable specified is unassigned.', 
 				$jr_pc_plugin_data['TextDomain'] );
 	}
 	if ( !jr_pc_signed_integer( $year ) || !jr_pc_signed_integer( $month ) || !jr_pc_signed_integer( $day ) ) {
 		return $error_message_prefix 
-			. __( 'one or more of the three jr_weekday parameters (year, month, day) is not an integer.', 
+			. __( 'one or more of the three function parameters (year, month, day) is not an integer.', 
 				$jr_pc_plugin_data['TextDomain'] );
 	}		
 	$jd = gregoriantojd( $month, $day, $year );
@@ -70,15 +81,82 @@ function jr_weekday( $year, $month, $day ) {
 				$jr_pc_plugin_data['TextDomain'] );
 	} else {
 		if ( jdtogregorian( $jd ) == "$month/$day/$year" ) {
-			return sprintf(
-				__( '%1$s %2$s, %3$s %4$s is a %5$s', 
-					$jr_pc_plugin_data['TextDomain'] ),
-				jr_pc_month_name( $month ), 
-				$day, 
-				abs( $year ), 
-				jr_pc_century( $year ), 
-				jr_pc_day_name( jddayofweek( $jd, CAL_DOW_DAYNO ) ) 
-			);
+			$weekday = jr_pc_day_name( jddayofweek( $jd, CAL_DOW_DAYNO ) );
+			if ( ( FALSE !== ( $settings = get_option( 'jr_pc_settings' ) ) ) && isset( $settings['fields'] ) ) {
+				/*	Rules:
+					Output ['before'] of current entry, current entry, and ['after'] of current entry.
+					Exception for first year field:  output ['before'] of Century part of year, entire year, and ['after'] of last digit of year.
+					Exception for other than first year field:  do nothing.
+					Exception when nothing output between fields:  output a space.
+				*/
+				foreach ( $settings['fields'] as $index => $attributes ) {
+					switch ( $attributes['part'] ) {
+						case 'century':
+							$before_year = $attributes['before'];
+							break;
+						case 'year':
+							$after_year = $attributes['after'];
+							break;
+					}
+				}
+				$date = '';
+				$first_year = TRUE;
+				$after_previous = FALSE;
+				foreach ( $settings['fields'] as $index => $attributes ) {
+					switch ( $attributes['part'] ) {
+						case 'month':
+							$date .= jr_weekday_spacing( $after_previous, $attributes['before'] ) . jr_pc_month_name( $month );
+							$after_previous = $attributes['after'];
+							break;
+						case 'day':
+							$date .= jr_weekday_spacing( $after_previous, $attributes['before'] ) . $day;
+							$after_previous = $attributes['after'];
+							break;
+						case 'century':
+						case 'tens':
+						case 'year':
+							if ( $first_year ) {
+								$date .= jr_weekday_spacing( $after_previous, $before_year ) . abs( $year );
+								$after_previous = $after_year;
+								$first_year = FALSE;
+							}
+							break;
+						case 'era':
+							if ( 'NONE' !== $settings['negative_year_handling'] ) {
+								$date .= jr_weekday_spacing( $after_previous, $attributes['before'] ) . jr_pc_century( $year );
+								$after_previous = $attributes['after'];
+							}
+							break;
+					}
+				}
+				$date .= $after_previous;
+				/*	translators: %1$s is the full Date formatted according to the Settings
+					and %2$s is the Name of the Day of the Week.
+				*/
+				return sprintf(
+					__( '%1$s is a %2$s', 
+						$jr_pc_plugin_data['TextDomain'] ),
+					$date,
+					$weekday 
+				);
+			} else {
+				/*	translators: %1$s is the Name of the Month,
+					%2$s is the Day of the Month,
+					%3$s is the Year as a positive integer,
+					%4$s is either 
+					and %5$s is the Name of the Day of the Week.
+					Used only when Settings not available.
+				*/
+				return sprintf(
+					__( '%1$s %2$s, %3$s %4$s is a %5$s', 
+						$jr_pc_plugin_data['TextDomain'] ),
+					jr_pc_month_name( $month ), 
+					$day, 
+					abs( $year ), 
+					jr_pc_century( $year ), 
+					$weekday 
+				);
+			}
 		} else {
 			return $error_message_prefix 
 			. __( 'date specified does not exist.', 
@@ -296,23 +374,31 @@ function jr_pc_signed_integer( $val ) {
  */
 function jr_pc_century( $century ) {
 	global $jr_pc_plugin_data;
-	$settings = get_option( 'jr_pc_settings' );
-	if ( $settings['negative_year_handling'] == 'NONE' ) {
-		$output = '';
+	if ( ( FALSE === ( $settings = get_option( 'jr_pc_settings' ) ) )
+		|| empty( $settings['negative_year_handling'] ) )
+	{
+		$neg = 'BC';
 	} else {
-		if ( $settings['negative_year_handling'] == 'BCE' ) {
+		$neg = $settings['negative_year_handling'];
+	}
+	switch ( $neg ) {
+		case 'NONE':
+			$output = '';
+			break;
+		case 'BCE':
 			if ( $century < 0 ) {
 				$output = __( 'BCE', $jr_pc_plugin_data['TextDomain'] );
 			} else {
 				$output = __( 'CE', $jr_pc_plugin_data['TextDomain'] );
 			}
-		} else {
+			break;
+		case 'BC':
+		default:
 			if ( $century < 0 ) {
 				$output = __( 'B.C.', $jr_pc_plugin_data['TextDomain'] );
 			} else {
 				$output = __( 'A.D.', $jr_pc_plugin_data['TextDomain'] );
 			}
-		}
 	}
 	return $output;
 }
