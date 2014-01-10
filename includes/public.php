@@ -140,10 +140,12 @@ function jr_weekday( $year, $month, $day ) {
 					$weekday 
 				);
 			} else {
-				/*	translators: %1$s is the Name of the Month,
-					%2$s is the Day of the Month,
-					%3$s is the Year as a positive integer,
-					%4$s is either 
+				/*	translators: %1$s is the Name of the Month;
+					%2$s is the Day of the Month;
+					%3$s is the Year as a positive integer;
+					%4$s is either a zero length string,
+					or indicates the time period when the year occurs
+					as B.C., A.D., BC or BCE;
 					and %5$s is the Name of the Day of the Week.
 					Used only when Settings not available.
 				*/
@@ -185,6 +187,15 @@ function jr_pc_pcal() {
 		as the code has not been adapted to multiple uses per page.
 	*/
 	if ( isset( $jr_pc_dup ) ) {
+		/*	translators: %1$s is the name of the shortcode surrounded by square brackets,
+			by default, [pcal]
+			It is displayed whenever the shortcode is used twice in the same page, post,
+			widget, etc.
+			This message is displayed the second, third and subsequent times the shortcode is
+			used in the same page, etc.
+			At present, the plugin would not work properly if the shortcode were allowed to
+			actually process more than once.
+		*/
 		return sprintf(
 					__( '%1$s (duplicate)', 
 						$jr_pc_plugin_data['TextDomain'] ),
@@ -305,7 +316,7 @@ function jr_pc_pcal() {
 				break;
 			case 'buttonday':
 				$output .= '<button type="submit" name="jrsubmit" value="jrsubmit">';
-				$output .= __( 'Display Day of Week', $jr_pc_plugin_data['TextDomain'] );
+				$output .= _x( 'Display Day of Week', 'Button', $jr_pc_plugin_data['TextDomain'] );
 				$output .= '</button>';
 				break;
 			case 'buttonhelp':
@@ -322,11 +333,11 @@ function jr_pc_pcal() {
 				$output .= '<input type="hidden" name="jrsavehelp" value="' . $jr_pc_help . '">';
 				if ( $jr_pc_help ) {
 					$output .= '<button type="submit" name="jrnohelp" value="jrnohelp">'
-						.  __( 'No Help and Info', $jr_pc_plugin_data['TextDomain'] )
+						.  _x( 'No Help and Info', 'Button', $jr_pc_plugin_data['TextDomain'] )
 						. '</button>';
 				} else {
 					$output .= '<button type="submit" name="jrhelp" value="jrhelp">'
-						.  __( 'Help and Info', $jr_pc_plugin_data['TextDomain'] )
+						.  _x( 'Help and Info', 'Button', $jr_pc_plugin_data['TextDomain'] )
 						. '</button>';
 				}
 				break;
@@ -387,17 +398,17 @@ function jr_pc_century( $century ) {
 			break;
 		case 'BCE':
 			if ( $century < 0 ) {
-				$output = __( 'BCE', $jr_pc_plugin_data['TextDomain'] );
+				$output = _x( 'BCE', 'Date Era', $jr_pc_plugin_data['TextDomain'] );
 			} else {
-				$output = __( 'CE', $jr_pc_plugin_data['TextDomain'] );
+				$output = _x( 'CE', 'Date Era', $jr_pc_plugin_data['TextDomain'] );
 			}
 			break;
 		case 'BC':
 		default:
 			if ( $century < 0 ) {
-				$output = __( 'B.C.', $jr_pc_plugin_data['TextDomain'] );
+				$output = _x( 'B.C.', 'Date Era', $jr_pc_plugin_data['TextDomain'] );
 			} else {
-				$output = __( 'A.D.', $jr_pc_plugin_data['TextDomain'] );
+				$output = _x( 'A.D.', 'Date Era', $jr_pc_plugin_data['TextDomain'] );
 			}
 	}
 	return $output;

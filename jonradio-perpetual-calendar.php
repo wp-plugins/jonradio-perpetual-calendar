@@ -161,7 +161,7 @@ function jr_pc_textdomain() {
 		'day'        => __( 'Day of Month', $jr_pc_plugin_data['TextDomain'] ),
 		/*	translators: Century Digits of Year refers to the year divided by 100, and would be "20" for the year 2014. */
 		'century'    => __( 'Century Digits of Year', $jr_pc_plugin_data['TextDomain'] ),
-		/*	translators: Ten Digits of the Year would be "1" for 2014. */
+		/*	translators: Tens Digit of the Year would be "1" for 2014. */
 		'tens'       => __( 'Tens Digit of Year', $jr_pc_plugin_data['TextDomain'] ),
 		'year'       => __( 'Last Digit of Year', $jr_pc_plugin_data['TextDomain'] ),
 		/*	translators: Current or Ancient Date refers to AD and BC, also known as CE and BCE; for example, 2200 years ago would be the year 200 BC. */
@@ -181,6 +181,9 @@ function jr_pc_textdomain() {
 				...
 	*/
 	$jr_pc_part_fields = array(
+		/*	translators: Date Part is the Settings Field Name for a portion of the date,
+			for example, Name of Month.
+		*/
 		'part'   => __( 'Date Part', $jr_pc_plugin_data['TextDomain'] ), 
 		'break'  => __( 'New Line Before?', $jr_pc_plugin_data['TextDomain'] ), 
 		'height' => __( 'Height of New Line (in Pixels)', $jr_pc_plugin_data['TextDomain'] ),
