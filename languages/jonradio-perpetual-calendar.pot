@@ -1,0 +1,540 @@
+# Copyright (C) 2014 jonradio Perpetual Calendar
+# This file is distributed under the same license as the jonradio Perpetual Calendar package.
+msgid ""
+msgstr ""
+"Project-Id-Version: jonradio Perpetual Calendar 3.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/jonradio-perpetual-calendar\n"
+"POT-Creation-Date: 2014-01-10 05:13:52+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: includes/admin.php:21 includes/admin.php:33
+msgid "Settings"
+msgstr ""
+
+#: includes/admin.php:48 includes/admin.php:85
+msgid "Perpetual Calendar plugin"
+msgstr ""
+
+#: includes/admin.php:60
+msgid ""
+"This plugin has been Network Activated in a WordPress Multisite (\"Network"
+"\") installation. Since all of this plugin&#039;s Settings can be specified "
+"separately for each individual WordPress site, you will need to go to the "
+"relevant individual Site&#039;s Settings page for this plugin to change the "
+"Settings for that Site."
+msgstr ""
+
+#: includes/admin.php:63
+msgid ""
+"Unfortunately, when WordPress network activates a plugin, you will not see "
+"an entry for that plugin on each individual Site&#039;s Plugins page. "
+"Needless to say, this can be very confusing. If you wish to avoid this "
+"confusion, you can Network Deactivate this plugin and Activate it "
+"individually on each Site where you wish to use it."
+msgstr ""
+
+#: includes/admin.php:66
+msgid ""
+"Alternatively, if you would prefer to have a single set of Settings that "
+"would apply to all sites in a WordPress network, please contact the Plugin "
+"author and this will be added to a future version of this plugin if there is "
+"enough interest expressed by webmasters such as you."
+msgstr ""
+
+#. translators: %1$s is the current name of the Shortcode, by default [pcal],
+#. but can be changed in the Settings.
+#: includes/admin.php:106
+msgid ""
+"This plugin provides a Perpetual Calendar for your site visitors via the "
+"%1$s Shortcode, and for your own use within php code via the "
+"<code>jr_pc_weekday( $year, $month, $day )</code> function. The name of the "
+"Shortcode can be changed in the Settings below, but the name of the function "
+"cannot be changed."
+msgstr ""
+
+#: includes/admin.php:111
+msgid ""
+"A Perpetual Calendar provides the day of the week for virtually any date in "
+"the past, present or future."
+msgstr ""
+
+#: includes/admin.php:120
+msgid "indicates the position of a blank in a Settings value."
+msgstr ""
+
+#: includes/admin.php:123 includes/admin.php:182
+msgid "Save Changes"
+msgstr ""
+
+#: includes/admin.php:141
+msgid "Name of Shortcode"
+msgstr ""
+
+#: includes/admin.php:150
+msgid "Shortcode Name"
+msgstr ""
+
+#: includes/admin.php:161 includes/admin.php:170
+msgid "Ancient Date Handling"
+msgstr ""
+
+#: includes/admin.php:184
+msgid "Date Form Input Layout"
+msgstr ""
+
+#. translators: %1$s is an integer from 1 to 8
+#: includes/admin.php:203
+msgid "Date Field %1$s Content and Layout"
+msgstr ""
+
+#: includes/admin.php:234
+msgid ""
+"If you wish to change the name of the Shortcode that you will use to "
+"indicate where the Perpetual Calendar is to be placed, typically in a "
+"WordPress Page or Post, please specify it here."
+msgstr ""
+
+#. translators: %1$s is the (already in use) Shortcode Name that the user has
+#. just entered on the Settings page,
+#. 			%2$s is the name of the php function that the previously defined (by
+#. something else) Shortcode Name points to,
+#. 			and %3$s is the Site URL delivered by get_site_url().
+#: includes/admin.php:245
+msgid ""
+"The Shortcode Name specified below, %1$s, appears to be already in use by "
+"another plugin or WordPress itself. It initiates function %2$s. Please "
+"choose another Shortcode Name. When you have resolved this issue, please "
+"click on your site home page %3$s to clear the error before returning to "
+"this Settings page."
+msgstr ""
+
+#: includes/admin.php:263
+msgid ""
+"To maintain compatibility with future versions of WordPress, please use only "
+"lower-case letters, with no blanks, hyphens or underscores, and a maximum "
+"length of 16."
+msgstr ""
+
+#: includes/admin.php:276
+msgid ""
+"Here is where you define how dates more than 2000 years ago will be handled. "
+"And how years since then, and into the future, will be displayed."
+msgstr ""
+
+#: includes/admin.php:288
+msgid "Current and Future Dates as A.D., Ancient Dates as B.C."
+msgstr ""
+
+#: includes/admin.php:295
+msgid "Current and Future Dates as CE, Ancient Dates as BCE"
+msgstr ""
+
+#: includes/admin.php:302
+msgid "Do not allow Dates more then 2000 Years in the Past"
+msgstr ""
+
+#: includes/admin.php:330
+msgid ""
+"Visitors enter a date using an Input Form of drop-down values for day of "
+"month, name of month, and year. The format of that Form is defined below.  "
+"You can choose the order in which day of month, name of month, and year "
+"appear, as well as the width of each field within the Form. And the text, if "
+"any, separating each field, including line breaks."
+msgstr ""
+
+#: includes/admin.php:333
+msgid ""
+"This also determines the format of the date in the response to the Display "
+"Day of Week button."
+msgstr ""
+
+#: includes/admin.php:336
+msgid ""
+"You can also position the two buttons used in the Form, and specify text and "
+"line breaks as separators. But you cannot specify the width of the buttons, "
+"as that is determined automatically by the visitor's browser based on the "
+"button's text and the Theme's styling of the button and its text."
+msgstr ""
+
+#: includes/admin.php:341
+msgid ""
+"<b>Pixels</b>: Form Field widths are specified in Pixels in the Settings "
+"below. If you are unfamiliar with Pixels, the large black line just above is "
+"shown for reference and is 100 pixels wide and 25 pixels in height."
+msgstr ""
+
+#: includes/admin.php:344
+msgid ""
+"Height of New Line (in Pixels) is ignored if New Line Before? is not "
+"selected.  It is also ignored if it is smaller than the height of the "
+"current Date Field and the ones that follow that are displayed on this new "
+"line.  Recommendation:  start with a value of 50."
+msgstr ""
+
+#: includes/admin.php:362
+msgid ""
+"This Date Field will be ignored, and will not shown in either the public "
+"Form where the site visitor enters the Date, or in the response displayed "
+"after clicking the \"Display Day of Week\" button. This Date Field will be "
+"ignored as long as \"Ancient Date Handling\" continues to be set to \"Do not "
+"allow Dates more then 2000 Years in the Past\"."
+msgstr ""
+
+#. translators: %1$s is the invalid Shortcode Name entered by the Administrator
+#. on the plugin's Settings page
+#: includes/admin.php:431
+msgid ""
+"Shortcode Name must be nothing but lower-case letters; \"%1$s\" is not valid"
+msgstr ""
+
+#. translators: %1$s is the duplicated Shortcode Name entered by the
+#. Administrator on the plugin's Settings page.
+#. 				%2$s is the Function Name that the previously defined Shortcode Name
+#. initiates,
+#. 				which may be displayed as just the Function's Name, Object::Function, or
+#. perhaps even a blank name if not known.
+#: includes/admin.php:460
+msgid ""
+"Shortcode Name \"%1$s\" is already in use by another plugin or WordPress "
+"itself; it initiates function \"%2$s\"; please choose another name"
+msgstr ""
+
+#. translators: %1$s is an integer from 1 to 8
+#: includes/admin.php:514
+msgid ""
+"Date Field %1$s New Line Height (pixels) must be an integer between 0 and 100"
+msgstr ""
+
+#. translators: %1$s is an integer from 1 to 8
+#: includes/admin.php:534
+msgid "Date Field %1$s Date Part is duplicated from Date Field %2$s"
+msgstr ""
+
+#. translators: %1$s is an integer from 1 to 8
+#: includes/admin.php:572
+msgid "Date Field %1$s Width (pixels) must be an integer between 1 and 500"
+msgstr ""
+
+#: includes/admin.php:595
+msgid "Settings Saved"
+msgstr ""
+
+#. translators: This is the text referred to later as "Era Text".
+#. 			%1$s is A.D. or CE (depending on Setting and how you have translated
+#. them) for current years,
+#. 			and %2$s is B.C. or BCE for years more than 2000 years old.
+#: includes/help.php:16
+msgid "<li>The era, %1$s for current years and %2$s for ancient years</li>"
+msgstr ""
+
+#: includes/help.php:23
+msgid "What is a Perpetual Calendar?"
+msgstr ""
+
+#: includes/help.php:25
+msgid ""
+"The name Perpetual Calendar refers to the quick visual determination of the "
+"day of week for any date across a large number of years into the past, "
+"present or future. This on-line version lets you enter any date up to "
+"several thousand years into the past or future, and have the day of the week "
+"displayed for you, without the need to read a traditional calendar."
+msgstr ""
+
+#: includes/help.php:28
+msgid "How to Display the Day of the Week for a Date?"
+msgstr ""
+
+#. translators: %1$s is a small graphic of a down arrow.
+#: includes/help.php:33
+msgid ""
+"To the right of the <strong>Display Day of Week</strong> button, click on "
+"the %1$s down arrow in each of the six boxes and select from the lists "
+"displayed by clicking on:"
+msgstr ""
+
+#. translators: %1$s is the current year as a four digit number.
+#. 		%2$s is the "Era Text" referred to in a previous translators comment.
+#: includes/help.php:43
+msgid ""
+"<li>The Month</li><li>The Day of the Month</li><li>The first one or two "
+"digits of the year, for example, 20 for this year, %1$s</li><li>The next "
+"digit of the year, frequently called <em>tens</em></li><li>The last digit of "
+"the year</li>%2$s"
+msgstr ""
+
+#: includes/help.php:50
+msgid "Then click on the <strong>Display Day of Week</strong> button."
+msgstr ""
+
+#: includes/help.php:52
+msgid ""
+"You should now see a message above the Perpetual Calendar similar to the "
+"following:"
+msgstr ""
+
+#. translators: %1$s is A.D. or CE or blank depending on Settings, and refers
+#. to how dates are specified to differential from Ancient Dates more than 2000
+#. years ago.
+#: includes/help.php:57
+msgid "February 9, 1962 %1$s is a Friday"
+msgstr ""
+
+#: includes/help.php:63
+msgid ""
+"You may also see the message \"Error:  date specified does not exist\", "
+"typically when specifying a Day of the Month that does not exist, such as "
+"April 31, as April only has 30 days."
+msgstr ""
+
+#: includes/help.php:69
+msgid "%1$s and %2$s"
+msgstr ""
+
+#. translators: %1$s, %2$s and %4$s are the current four digit year.
+#. 				%3$s is A.D. or CE, depending on the Settings.
+#: includes/help.php:78
+msgid ""
+"The current year, %1$s, is more correctly known as &quot;%2$s %3$s&quot; to "
+"differentiate it from the year more than 4000 years ago with the same "
+"number, %4$s"
+msgstr ""
+
+#: includes/help.php:87
+msgid ""
+"BCE.  For more information, on CE and BCE, <a href=\"http://en.wikipedia.org/"
+"wiki/Common_Era\" target=\"_blank\">click here</a>\tfor the <a href=\"http://"
+"en.wikipedia.org/wiki/Common_Era\" target=\"_blank\">Wikipedia article on "
+"the subject</a>."
+msgstr ""
+
+#: includes/help.php:90
+msgid ""
+"Because this Perpetual Calendar can go nearly 7000 years into the past or "
+"future, all dates are shown as CE or BCE."
+msgstr ""
+
+#: includes/help.php:94
+msgid ""
+"B.C.  For more information, on A.D. and B.C., <a href=\"http://en.wikipedia."
+"org/wiki/A.d.\" target=\"_blank\">click here</a> for the <a href=\"http://en."
+"wikipedia.org/wiki/A.d.\" target=\"_blank\">Wikipedia article on the "
+"subject</a>."
+msgstr ""
+
+#: includes/help.php:97
+msgid ""
+"Because this Perpetual Calendar can go nearly 7000 years into the past or "
+"future, all dates are shown as A.D. or B.C."
+msgstr ""
+
+#: includes/help.php:103
+msgid "About this Perpetual Calendar"
+msgstr ""
+
+#: includes/help.php:106
+msgid ""
+"This Perpetual Calendar was written by a retired computer programmer who "
+"began writing programs in 1971.\tIt is available for free to any web site "
+"that wishes to use it. It was designed for WordPress, a popular piece of "
+"software used to create web sites."
+msgstr ""
+
+#: includes/public.php:66
+msgid "Error jr_weekday function:  "
+msgstr ""
+
+#: includes/public.php:69
+msgid ""
+"one or more of the three function parameters (year, month, day) were either "
+"not specified or the variable specified is unassigned."
+msgstr ""
+
+#: includes/public.php:74
+msgid ""
+"one or more of the three function parameters (year, month, day) is not an "
+"integer."
+msgstr ""
+
+#: includes/public.php:80
+msgid "earliest allowed date is November 25, 4714 B.C."
+msgstr ""
+
+#. translators: %1$s is the full Date formatted according to the Settings
+#. 					and %2$s is the Name of the Day of the Week.
+#: includes/public.php:137
+msgid "%1$s is a %2$s"
+msgstr ""
+
+#. translators: %1$s is the Name of the Month;
+#. 					%2$s is the Day of the Month;
+#. 					%3$s is the Year as a positive integer;
+#. 					%4$s is either a zero length string,
+#. 					or indicates the time period when the year occurs
+#. 					as B.C., A.D., BC or BCE;
+#. 					and %5$s is the Name of the Day of the Week.
+#. 					Used only when Settings not available.
+#: includes/public.php:153
+msgid "%1$s %2$s, %3$s %4$s is a %5$s"
+msgstr ""
+
+#: includes/public.php:164
+msgid "date specified does not exist."
+msgstr ""
+
+#. translators: %1$s is the name of the shortcode surrounded by square
+#. brackets,
+#. 			by default, [pcal]
+#. 			It is displayed whenever the shortcode is used twice in the same page,
+#. post,
+#. 			widget, etc.
+#. 			This message is displayed the second, third and subsequent times the
+#. shortcode is
+#. 			used in the same page, etc.
+#. 			At present, the plugin would not work properly if the shortcode were
+#. allowed to
+#. 			actually process more than once.
+#: includes/public.php:200
+msgid "%1$s (duplicate)"
+msgstr ""
+
+#: includes/public.php:319
+msgctxt "Button"
+msgid "Display Day of Week"
+msgstr ""
+
+#: includes/public.php:336
+msgctxt "Button"
+msgid "No Help and Info"
+msgstr ""
+
+#: includes/public.php:340
+msgctxt "Button"
+msgid "Help and Info"
+msgstr ""
+
+#: includes/public.php:401
+msgctxt "Date Era"
+msgid "BCE"
+msgstr ""
+
+#: includes/public.php:403
+msgctxt "Date Era"
+msgid "CE"
+msgstr ""
+
+#: includes/public.php:409
+msgctxt "Date Era"
+msgid "B.C."
+msgstr ""
+
+#: includes/public.php:411
+msgctxt "Date Era"
+msgid "A.D."
+msgstr ""
+
+#: includes/public.php:430
+msgid "Sunday/Monday/Tuesday/Wednesday/Thursday/Friday/Saturday"
+msgstr ""
+
+#: includes/public.php:448
+msgid ""
+"January/February/March/April/May/June/July/August/September/October/November/"
+"December"
+msgstr ""
+
+#. translators: [pcal] is default Shortcode Name in English.  Feel free to
+#. change.
+#: jonradio-perpetual-calendar.php:153
+msgid "pcal"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:160
+msgid "Month Name"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:161
+msgid "Day of Month"
+msgstr ""
+
+#. translators: Century Digits of Year refers to the year divided by 100, and
+#. would be "20" for the year 2014.
+#: jonradio-perpetual-calendar.php:163
+msgid "Century Digits of Year"
+msgstr ""
+
+#. translators: Tens Digit of the Year would be "1" for 2014.
+#: jonradio-perpetual-calendar.php:165
+msgid "Tens Digit of Year"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:166
+msgid "Last Digit of Year"
+msgstr ""
+
+#. translators: Current or Ancient Date refers to AD and BC, also known as CE
+#. and BCE; for example, 2200 years ago would be the year 200 BC.
+#: jonradio-perpetual-calendar.php:168
+msgid "Current or Ancient Date"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:169
+msgid "Display Day of Week button"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:170
+msgid "Help and Info button"
+msgstr ""
+
+#. translators: Date Part is the Settings Field Name for a portion of the date,
+#. 			for example, Name of Month.
+#: jonradio-perpetual-calendar.php:187
+msgid "Date Part"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:188
+msgid "New Line Before?"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:189
+msgid "Height of New Line (in Pixels)"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:190
+msgid "Text Before"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:191
+msgid "Field Width (in Pixels)"
+msgstr ""
+
+#: jonradio-perpetual-calendar.php:192
+msgid "Text After"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "jonradio Perpetual Calendar"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://jonradio.com/plugins/jonradio-perpetual-calendar/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Your choice of Shortcode or php function to return a message indicating the "
+"full name of the day of the week for any given date, the typical usage of a "
+"so-called Perpetual Calendar."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "jonradio"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://jonradio.com/plugins"
+msgstr ""
