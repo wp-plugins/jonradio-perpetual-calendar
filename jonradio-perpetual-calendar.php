@@ -2,7 +2,7 @@
 /*
 Plugin Name: jonradio Perpetual Calendar
 Plugin URI: http://jonradio.com/plugins/jonradio-perpetual-calendar/
-Description: Your choice of Shortcode or php function to return a message indicating the full name of the day of the week for any given date, the typical usage of a so-called Perpetual Calendar. 
+Description: Determines Day of the Week for any Date, 7000 years into the past or future, with a Shortcode allowing Web Site Visitors to enter any date and display Day of Week, and a PHP Function accepting Day, Month and Year and returning a String with the Formatted Date and Day of Week.
 Version: 3.0
 Author: jonradio
 Author URI: http://jonradio.com/plugins
