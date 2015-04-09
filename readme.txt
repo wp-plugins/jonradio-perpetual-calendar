@@ -1,7 +1,7 @@
 === jonradio Perpetual Calendar ===
 Contributors: jonradio
 Donate link: http://jonradio.com/plugins
-Tags: calendar, weekday, date, history, shortcode, function, php, plugin
+Tags: adopt-me, calendar, weekday, date, history, shortcode, function, php, plugin
 Requires at least: 3.0
 Tested up to: 4.2
 Stable tag: 3.0
