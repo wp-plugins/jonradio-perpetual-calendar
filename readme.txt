@@ -1,6 +1,6 @@
 === jonradio Perpetual Calendar ===
-Contributors: dgewirtz, jonradio
-Donate link: http://jonradio.com/plugins
+Contributors: dgewirtz
+Donate link: http://zatzlabs.com/lab-notes/
 Tags: calendar, weekday, date, history, shortcode, function, php, plugin
 Requires at least: 3.0
 Tested up to: 4.2
