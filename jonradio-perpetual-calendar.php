@@ -4,7 +4,7 @@ Plugin Name: jonradio Perpetual Calendar
 Plugin URI: http://zatzlabs.com/lab-notes/
 Description: Determines Day of the Week for any Date, 7000 years into the past or future, with a Shortcode allowing Web Site Visitors to enter any date and display Day of Week, and a PHP Function accepting Day, Month and Year and returning a String with the Formatted Date and Day of Week.
 Version: 3.0
-Author: dgewirtz
+Author: David Gewirtz
 Author URI: http://zatzlabs.com/lab-notes/
 Text Domain: jonradio-perpetual-calendar
 Domain Path: /languages
