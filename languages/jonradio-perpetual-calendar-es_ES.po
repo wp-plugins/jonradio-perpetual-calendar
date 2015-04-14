@@ -639,8 +639,8 @@ msgid "jonradio Perpetual Calendar"
 msgstr "jonradio Calendario Perpetuo"
 
 #. Plugin URI of the plugin/theme
-msgid "http://jonradio.com/plugins/jonradio-perpetual-calendar/"
-msgstr "http://jonradio.com/plugins/jonradio-perpetual-calendar/"
+msgid "http://zatzlabs.com/plugins/"
+msgstr "http://zatzlabs.com/plugins/"
 
 #. Description of the plugin/theme
 msgid ""
@@ -657,5 +657,5 @@ msgid "jonradio"
 msgstr "jonradio"
 
 #. Author URI of the plugin/theme
-msgid "http://jonradio.com/plugins"
-msgstr "http://jonradio.com/plugins"
+msgid "http://zatzlabs.com/plugins/"
+msgstr "http://zatzlabs.com/plugins/"

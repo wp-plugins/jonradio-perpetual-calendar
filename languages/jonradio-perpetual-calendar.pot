@@ -101,8 +101,10 @@ msgstr ""
 
 #. translators: %1$s is the (already in use) Shortcode Name that the user has
 #. just entered on the Settings page,
+
 #. 			%2$s is the name of the php function that the previously defined (by
 #. something else) Shortcode Name points to,
+
 #. 			and %3$s is the Site URL delivered by get_site_url().
 #: includes/admin.php:245
 msgid ""
@@ -194,8 +196,10 @@ msgstr ""
 
 #. translators: %1$s is the duplicated Shortcode Name entered by the
 #. Administrator on the plugin's Settings page.
+
 #. 				%2$s is the Function Name that the previously defined Shortcode Name
 #. initiates,
+
 #. 				which may be displayed as just the Function's Name, Object::Function, or
 #. perhaps even a blank name if not known.
 #: includes/admin.php:460
@@ -225,8 +229,10 @@ msgid "Settings Saved"
 msgstr ""
 
 #. translators: This is the text referred to later as "Era Text".
+
 #. 			%1$s is A.D. or CE (depending on Setting and how you have translated
 #. them) for current years,
+
 #. 			and %2$s is B.C. or BCE for years more than 2000 years old.
 #: includes/help.php:16
 msgid "<li>The era, %1$s for current years and %2$s for ancient years</li>"
@@ -258,6 +264,7 @@ msgid ""
 msgstr ""
 
 #. translators: %1$s is the current year as a four digit number.
+
 #. 		%2$s is the "Era Text" referred to in a previous translators comment.
 #: includes/help.php:43
 msgid ""
@@ -296,6 +303,7 @@ msgid "%1$s and %2$s"
 msgstr ""
 
 #. translators: %1$s, %2$s and %4$s are the current four digit year.
+
 #. 				%3$s is A.D. or CE, depending on the Settings.
 #: includes/help.php:78
 msgid ""
@@ -365,18 +373,26 @@ msgid "earliest allowed date is November 25, 4714 B.C."
 msgstr ""
 
 #. translators: %1$s is the full Date formatted according to the Settings
+
 #. 					and %2$s is the Name of the Day of the Week.
 #: includes/public.php:137
 msgid "%1$s is a %2$s"
 msgstr ""
 
 #. translators: %1$s is the Name of the Month;
+
 #. 					%2$s is the Day of the Month;
+
 #. 					%3$s is the Year as a positive integer;
+
 #. 					%4$s is either a zero length string,
+
 #. 					or indicates the time period when the year occurs
+
 #. 					as B.C., A.D., BC or BCE;
+
 #. 					and %5$s is the Name of the Day of the Week.
+
 #. 					Used only when Settings not available.
 #: includes/public.php:153
 msgid "%1$s %2$s, %3$s %4$s is a %5$s"
@@ -388,15 +404,22 @@ msgstr ""
 
 #. translators: %1$s is the name of the shortcode surrounded by square
 #. brackets,
+
 #. 			by default, [pcal]
+
 #. 			It is displayed whenever the shortcode is used twice in the same page,
 #. post,
+
 #. 			widget, etc.
+
 #. 			This message is displayed the second, third and subsequent times the
 #. shortcode is
+
 #. 			used in the same page, etc.
+
 #. 			At present, the plugin would not work properly if the shortcode were
 #. allowed to
+
 #. 			actually process more than once.
 #: includes/public.php:200
 msgid "%1$s (duplicate)"
@@ -521,7 +544,7 @@ msgid "jonradio Perpetual Calendar"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://jonradio.com/plugins/jonradio-perpetual-calendar/"
+msgid "http://zatzlabs.com/plugins/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -536,5 +559,5 @@ msgid "jonradio"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://jonradio.com/plugins"
+msgid "http://zatzlabs.com/plugins/"
 msgstr ""
