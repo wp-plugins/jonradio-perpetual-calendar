@@ -16,7 +16,7 @@ Display the Day of Week for virtually any Date, from 6500 years in the past to 8
 
 Providing your site visitors with a Perpetual Calendar is as easy as installing and activating this Plugin with **Add Plugin** and inserting the `[pcal]` Shortcode in a Page, Post or any other place where Shortcodes are allowed.
 
-Click here for a Live Demo of the Plugin:  http://jonradio.com/plugins/jonradio-perpetual-calendar/
+Click here for a Live Demo of the Plugin:  http://zatzlabs.com/plugins/
 
 This Plugin has been Internationalized ("Translation-Ready").  Both the Admin and User (Site Visitor) views are presently available in either English or Spanish, with a .POT translation file available in the /languages/ directory within the Plugin, for any translators wishing to translate it into other languages, which we would love to include in future versions of the Plugin.  Special thanks to Andrew Kurtis of WebHostingHub for the Spanish translation.
 
@@ -61,7 +61,7 @@ The term Perpetual Calendar normally refers to the display of a calendar of any 
 
 The format of the Date can be changed in the Settings for the plugin.
 
-At present, this plugin is only available in English and Spanish. Anyone interested in providing translation files and localization information for this plugin into any other language and culture is strongly encouraged to visit this page for more information:  http://jonradio.com/plugins
+At present, this plugin is only available in English and Spanish. Anyone interested in providing translation files and localization information for this plugin into any other language and culture is strongly encouraged to visit this page for more information:  http://zatzlabs.com/plugins/
 
 = Can I eliminate the reference to years as A.D., as my site visitors find it confusing? =
 
