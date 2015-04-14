@@ -1,6 +1,6 @@
 === jonradio Perpetual Calendar ===
 Contributors: jonradio
-Donate link: http://jonradio.com/plugins
+Donate link: http://zatzlabs.com/plugins/
 Tags: calendar, weekday, date, history, shortcode, function, php, plugin
 Requires at least: 3.0
 Tested up to: 3.8
@@ -14,7 +14,7 @@ Provides both a Shortcode and a php Function that each return a message indicati
 
 Gives web site visitors a quick way to determine the Day of the Week for any date up to almost seven thousand years in the past or future.  The plugin provides both a `[pcal]` shortcode and jr_weekday function, providing a choice in how it is implemented.
 
-Click here and scroll down for a Live Demo of the Plugin:  http://jonradio.com/plugins/jonradio-perpetual-calendar/
+Click here and scroll down for a Live Demo of the Plugin:  http://zatzlabs.com/plugins/
 
 The term "Perpetual Calendar" normally refers to the display of a calendar of any week or month across a broad range of years.  However, it is almost always used to determine the day of the week for a given date, which is what this plugin does.
 
@@ -32,7 +32,7 @@ Multiple uses of the `[pcal]` Shortcode on the same Page are detected:  the firs
 
 The `[pcal]` shortcode has been tested with the following popular Themes:  Twenty Eleven, Twenty Ten, Delicate, PageLines, Responsive, Suffusion.
 
-At present, this plugin is only available in English. **Anyone interested in providing translation files and localization information for this plugin into any language and culture is strongly encouraged to visit this page for more information**:  http://jonradio.com/plugins
+At present, this plugin is only available in English. **Anyone interested in providing translation files and localization information for this plugin into any language and culture is strongly encouraged to visit this page for more information**:  http://zatzlabs.com/plugins/
 
 == Installation ==
 
@@ -47,7 +47,7 @@ This section describes how to install the *jonradio Perpetual Calendar* plugin a
 
 = Is the plugin available in my language and/or date format? =
 
-At present, this plugin is only available in English. Anyone interested in providing translation files and localization information for this plugin into any language and culture is strongly encouraged to visit this page for more information:  http://jonradio.com/plugins
+At present, this plugin is only available in English. Anyone interested in providing translation files and localization information for this plugin into any language and culture is strongly encouraged to visit this page for more information:  http://zatzlabs.com/plugins/
 
 = Can I eliminate the reference to years as A.D., as my site visitors find it confusing? =
 
