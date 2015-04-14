@@ -1,15 +1,15 @@
 <?php
 /*
 Plugin Name: jonradio Perpetual Calendar
-Plugin URI: http://jonradio.com/plugins/jonradio-perpetual-calendar/
+Plugin URI: http://zatzlabs.com/plugins/
 Description: Your choice of Shortcode or php function to return a message indicating the full name of the day of the week for any given date, the typical usage of a so-called Perpetual Calendar. 
 Version: 2.1
-Author: jonradio
-Author URI: http://jonradio.com/plugins
+Author: David Gewirtz
+Author URI: http://zatzlabs.com/plugins/
 License: GPLv2
 */
 
-/*  Copyright 2012  jonradio  (email : info@jonradio.com)
+/*  Copyright 2012  jonradio  (email : info@zatz.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
