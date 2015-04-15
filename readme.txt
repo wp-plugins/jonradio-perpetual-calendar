@@ -18,8 +18,6 @@ Display the Day of Week for virtually any Date, from 6500 years in the past to 8
 
 Providing your site visitors with a Perpetual Calendar is as easy as installing and activating this Plugin with **Add Plugin** and inserting the `[pcal]` Shortcode in a Page, Post or any other place where Shortcodes are allowed.
 
-Click here for a Live Demo of the Plugin:  http://zatzlabs.com/plugins/
-
 This Plugin has been Internationalized ("Translation-Ready").  Both the Admin and User (Site Visitor) views are presently available in either English or Spanish, with a .POT translation file available in the /languages/ directory within the Plugin, for any translators wishing to translate it into other languages, which we would love to include in future versions of the Plugin.  Special thanks to Andrew Kurtis of WebHostingHub for the Spanish translation.
 
 Once the plugin is successfully installed and activated, adding the plugin's Shortcode (by default, `[pcal]`) to any WordPress Post or Page will insert an HTML `<form>` that prompts the user to select a Month, Day, and Year from drop-down lists.  Clicking the "Display Day of Week" button will generate a message above the `<form>` indicating the full name of the day of the week for the given date.  Or an error message for all invalid dates.  Clicking the "Help and Info" button will display, right below the Perpetual Calendar, instructions explaining what it is and how to use it.
