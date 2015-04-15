@@ -1,6 +1,6 @@
-=== jonradio Perpetual Calendar ===
+=== Perpetual Calendar ===
 Contributors: dgewirtz
-Donate link: http://zatzlabs.com/plugins/
+Donate link: http://zatzlabs.com/lab-notes/
 Tags: calendar, weekday, date, history, shortcode, function, php, plugin
 Requires at least: 3.0
 Tested up to: 4.2
@@ -11,6 +11,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Allows Site Visitors to display the Day of Week for any Date they enter, via Shortcode or PHP Function.
 
 == Description ==
+
+*Formerly: "jonradio Perpetual Calendar"*
 
 Display the Day of Week for virtually any Date, from 6500 years in the past to 8000 years in the future.  A Shortcode allows you to insert (anywhere on your WordPress site) a Form for your Web Site Visitors so that they can enter a Date and display the Name of the Day of the Week for that Date.  Both the Name of the Shortcode, which defaults to `[pcal]`, and the Format of the Date can be modified from the Admin Settings panel for this plugin.  A "Help and Info" button provides Visitors with background and usage details.
 
@@ -33,6 +35,12 @@ Supported dates range from November 25, 4714 B.C. (1 A.D. when Plugin Settings s
 Multiple uses of the plugin's Shortcode on the same Page are detected:  the first works normally, but all others display the Shortcode's Name, surrounded by square brackets, followed by "(duplicate)".  Likewise when displaying multiple Posts, with the Shortcode occurring more than once across all the displayed Posts.
 
 For more information, please [click here](http://wordpress.org/plugins/jonradio-perpetual-calendar/faq/) or on [the FAQ tab above](http://wordpress.org/plugins/jonradio-perpetual-calendar/faq/).
+
+> <strong>Adoption Notice</strong><br>
+> This plugin was recently adopted by David Gewirtz and ongoing support and updates will continue. Feel free to visit [David's Lab Notes](http://zatzlabs.com/lab-notes/) for additional details and to sign up for emailed news updates.
+
+Special thanks to Jon 'jonradio' Pearkins for creating the plugin and making adoption possible.
+
 
 == Installation ==
 
