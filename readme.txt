@@ -1,5 +1,5 @@
 === jonradio Perpetual Calendar ===
-Contributors: jonradio
+Contributors: dgewirtz
 Donate link: http://zatzlabs.com/plugins/
 Tags: calendar, weekday
 Requires at least: 3.0
